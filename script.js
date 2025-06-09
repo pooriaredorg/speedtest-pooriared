@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadSpeedSpan = document.getElementById('uploadSpeed');
     const pingTimeSpan = document.getElementById('pingTime');
     const statusMessage = document.getElementById('statusMessage');
-    const loadingSpinner = document.getElementById('loadingSpinner'); // اضافه شدن اسپینر
+    const loadingSpinner = document.getElementById('loadingSpinner'); 
 
     const downloadTestUrls = [
         'https://speed.cloudflare.com/__down?bytes=500000', 
@@ -21,26 +21,23 @@ document.addEventListener('DOMContentLoaded', () => {
     async function startSpeedTest() {
         startButton.disabled = true;
         startButton.textContent = 'در حال تست...';
-        statusMessage.classList.remove('visible'); // پنهان کردن پیام وضعیت قبلی
-        loadingSpinner.classList.remove('hidden'); // نمایش اسپینر
+        statusMessage.classList.remove('visible'); 
+        loadingSpinner.classList.remove('hidden'); 
         loadingSpinner.classList.add('visible');
 
-        // ریست کردن نتایج قبلی و حذف انیمیشن نبض
         downloadSpeedSpan.innerHTML = '۰.۰۰ <small>Mbps</small>';
         uploadSpeedSpan.innerHTML = '۰.۰۰ <small>Mbps</small>';
         pingTimeSpan.innerHTML = '۰ <small>ms</small>';
         downloadSpeedSpan.style.animation = 'none';
         uploadSpeedSpan.style.animation = 'none';
         pingTimeSpan.style.animation = 'none';
-        // force reflow to restart animation
         void downloadSpeedSpan.offsetWidth; 
         void uploadSpeedSpan.offsetWidth;
         void pingTimeSpan.offsetWidth;
 
         try {
-            // --- ۱. تست پینگ ---
             statusMessage.textContent = 'در حال تست پینگ...';
-            statusMessage.classList.add('visible'); // نمایش پیام وضعیت
+            statusMessage.classList.add('visible'); 
             const pingResults = [];
             for (let i = 0; i < 4; i++) { 
                 const startTime = performance.now();
@@ -51,9 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const avgPing = Math.round(pingResults.reduce((a, b) => a + b) / pingResults.length);
             pingTimeSpan.innerHTML = `${avgPing} <small>ms</small>`;
-            pingTimeSpan.classList.add('animated'); // اعمال انیمیشن شمارش
+            pingTimeSpan.classList.add('animated'); 
 
-            // --- ۲. تست دانلود ---
             statusMessage.textContent = 'در حال تست دانلود...';
             const downloadSpeeds = [];
             for (const url of downloadTestUrls) {
@@ -69,16 +65,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 downloadSpeeds.push(parseFloat(mbps));
                 
                 downloadSpeedSpan.innerHTML = `${mbps} <small>Mbps</small>`;
-                downloadSpeedSpan.classList.add('animated'); // اعمال انیمیشن شمارش
+                downloadSpeedSpan.classList.add('animated'); 
                 await new Promise(resolve => setTimeout(resolve, 100)); 
             }
             const finalDownloadMbps = (downloadSpeeds.reduce((a, b) => a + b) / downloadSpeeds.length).toFixed(2);
             downloadSpeedSpan.innerHTML = `${finalDownloadMbps} <small>Mbps</small>`;
-            downloadSpeedSpan.style.animation = ''; // حذف انیمیشن شمارش برای پالس نهایی
+            downloadSpeedSpan.style.animation = ''; 
             downloadSpeedSpan.classList.remove('animated'); 
-            downloadSpeedSpan.style.animation = 'pulse 1s infinite alternate'; // اعمال انیمیشن نبض
+            downloadSpeedSpan.style.animation = 'pulse 1s infinite alternate'; 
 
-            // --- ۳. تست آپلود ---
             statusMessage.textContent = 'در حال تست آپلود...';
             const uploadSpeeds = [];
             const dummyUploadData = new Blob([new ArrayBuffer(uploadTestSize)], { type: 'application/octet-stream' });
@@ -99,14 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 uploadSpeeds.push(parseFloat(mbps));
                 
                 uploadSpeedSpan.innerHTML = `${mbps} <small>Mbps</small>`;
-                uploadSpeedSpan.classList.add('animated'); // اعمال انیمیشن شمارش
+                uploadSpeedSpan.classList.add('animated'); 
                 await new Promise(resolve => setTimeout(resolve, 100)); 
             }
             const finalUploadMbps = (uploadSpeeds.reduce((a, b) => a + b) / uploadSpeeds.length).toFixed(2);
             uploadSpeedSpan.innerHTML = `${finalUploadMbps} <small>Mbps</small>`;
-            uploadSpeedSpan.style.animation = ''; // حذف انیمیشن شمارش برای پالس نهایی
+            uploadSpeedSpan.style.animation = ''; 
             uploadSpeedSpan.classList.remove('animated'); 
-            uploadSpeedSpan.style.animation = 'pulse 1s infinite alternate'; // اعمال انیمیشن نبض
+            uploadSpeedSpan.style.animation = 'pulse 1s infinite alternate'; 
 
             statusMessage.textContent = 'تست کامل شد!';
             statusMessage.classList.add('visible'); 
@@ -119,12 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
             uploadSpeedSpan.innerHTML = 'خطا <small>Mbps</small>';
             pingTimeSpan.innerHTML = 'خطا <small>ms</small>';
         } finally {
-            // مخفی کردن اسپینر و فعال کردن دکمه
             loadingSpinner.classList.remove('visible');
             loadingSpinner.classList.add('hidden');
             startButton.disabled = false;
             startButton.textContent = 'تست مجدد';
-            // اعمال انیمیشن پالس نهایی به پینگ
             pingTimeSpan.style.animation = '';
             pingTimeSpan.classList.remove('animated');
             pingTimeSpan.style.animation = 'pulse 1s infinite alternate';
