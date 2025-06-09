@@ -19,15 +19,15 @@
         </header>
 
         <section class="speed-test-section">
-            <div class="speed-display">
+            <div class="speed-display" id="downloadBox">
                 <p>سرعت دانلود:</p>
                 <div class="speed-value" id="downloadSpeed">۰.۰۰ <small>Mbps</small></div>
             </div>
-            <div class="speed-display">
+            <div class="speed-display" id="uploadBox">
                 <p>سرعت آپلود:</p>
                 <div class="speed-value" id="uploadSpeed">۰.۰۰ <small>Mbps</small></div>
             </div>
-            <div class="speed-display">
+            <div class="speed-display" id="pingBox">
                 <p>پینگ:</p>
                 <div class="speed-value" id="pingTime">۰ <small>ms</small></div>
             </div>
@@ -36,20 +36,21 @@
         <button id="startButton">شروع تست سرعت</button>
 
         <div id="loadingSpinner" class="loading-spinner hidden"></div>
-
         <div id="statusMessage" class="status-message"></div>
 
-        <div class="disclaimer">
-            <p>این تست، تخمینی از سرعت اینترنت شما را ارائه می‌دهد. برای نتایج کاملا دقیق، ممکن است به ابزارهای تخصصی‌تر نیاز باشد.</p>
-        </div>
-
-        <footer>
+        <div class="developer-info">
             <p>طراحی و توسعه توسط: <span class="designer-name">پوریا عبدالله نژاد</span></p>
             <p class="instagram-link">
                 پیج اینستاگرام: 
                 <a href="https://www.instagram.com/pooria_abdollahnezhad" target="_blank" rel="noopener noreferrer">@pooria_abdollahnezhad</a>
             </p>
-        </footer>
+        </div>
+
+        <div class="disclaimer">
+            <p>این تست، تخمینی از سرعت اینترنت شما را ارائه می‌دهد. برای نتایج کاملا دقیق، ممکن است به ابزارهای تخصصی‌تر نیاز باشد.</p>
+        </div>
+
+        <footer></footer>
     </div>
 
     <script src="script.js"></script>
