@@ -2,32 +2,30 @@ body {
     font-family: 'Vazirmatn', sans-serif;
     background: linear-gradient(135deg, #a8dadc 0%, #457b9d 100%); 
     display: flex;
-    flex-direction: column; /* برای چینش محتوا و شعار در ستون */
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* حداقل ارتفاع برای کل صفحه */
+    min-height: 100vh; 
     margin: 0;
     direction: rtl; 
     text-align: right; 
     color: #333;
     line-height: 1.6;
     overflow-x: hidden; 
-    padding: 10px; /* کاهش پدینگ کلی برای صفحات کوچک */
+    padding: 5px; /* پدینگ کلی را باز هم کاهش دادیم */
     box-sizing: border-box;
 }
 
-/* استایل متن "به امید ایرانی آزاد" */
 .top-slogan {
     color: white;
-    font-size: 1.8em; /* اندازه مناسب برای عنوان بالا */
+    font-size: 1.6em; /* کمی کوچک‌تر */
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* سایه متن برای برجسته‌تر شدن */
-    margin-bottom: 20px; /* فاصله از کانتینر اصلی */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+    margin-bottom: 15px; /* کاهش فاصله */
     text-align: center;
     width: 100%;
 }
 
-/* انیمیشن محو شدن ورود کانتینر */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -35,21 +33,21 @@ body {
 
 .container {
     background-color: #ffffff;
-    padding: 30px 40px; /* کاهش پدینگ */
-    border-radius: 20px; 
+    padding: 25px 30px; /* کاهش پدینگ */
+    border-radius: 15px; /* کمی کمتر گرد */
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); 
-    max-width: 600px; /* کمی کاهش عرض */
+    max-width: 550px; /* کمی کاهش عرض */
     width: 100%; 
     text-align: center;
     box-sizing: border-box; 
     animation: fadeIn 0.8s ease-out forwards; 
-    flex-shrink: 0; /* جلوگیری از کوچک شدن زیاد در موبایل */
+    flex-shrink: 0; 
 }
 
 header h1 {
     color: #1d3557; 
-    font-size: 2.2em; /* کاهش اندازه فونت */
-    margin-bottom: 8px; /* کاهش مارجین */
+    font-size: 2em; /* کاهش اندازه فونت */
+    margin-bottom: 5px; /* کاهش مارجین */
     position: relative; 
     display: inline-block; 
 }
@@ -58,10 +56,10 @@ header h1::after {
     content: '';
     display: block;
     width: 0;
-    height: 3px; /* کمی باریک‌تر */
+    height: 3px; 
     background: #e63946; 
     transition: width 0.5s ease-out; 
-    margin: 5px auto 0;
+    margin: 3px auto 0; /* کاهش مارجین */
     border-radius: 2px;
 }
 
@@ -74,44 +72,43 @@ header .highlight {
 }
 
 header p {
-    font-size: 1em; /* کاهش اندازه فونت */
+    font-size: 0.9em; /* کاهش اندازه فونت */
     color: #666;
-    margin-bottom: 25px; /* کاهش مارجین */
+    margin-bottom: 20px; /* کاهش مارجین */
 }
 
 .speed-test-section {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap; 
-    gap: 15px; /* کاهش فاصله بین آیتم‌ها */
-    margin-bottom: 25px; /* کاهش مارجین */
+    gap: 10px; /* کاهش بیشتر فاصله */
+    margin-bottom: 15px; /* کاهش مارجین */
 }
 
 .speed-display {
-    background-color: #f1faee; 
-    padding: 18px; /* کاهش پدینگ */
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    padding: 15px; /* کاهش پدینگ */
+    border-radius: 10px; /* کمی کمتر گرد */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* سایه کمی ملایم‌تر */
     flex: 1; 
-    min-width: 140px; /* کاهش حداقل عرض */
+    min-width: 120px; /* کاهش حداقل عرض */
     text-align: center;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .speed-display:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px); /* افکت بالا رفتن کمی کمتر */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .speed-display p {
-    margin: 0 0 8px 0; /* کاهش مارجین */
-    font-size: 0.95em; /* کاهش اندازه فونت */
+    margin: 0 0 5px 0; /* کاهش مارجین */
+    font-size: 0.9em; /* کاهش اندازه فونت */
     color: #457b9d; 
     font-weight: bold;
 }
 
 .speed-value {
-    font-size: 2.2em; /* کاهش اندازه فونت */
+    font-size: 2em; /* کاهش اندازه فونت */
     font-weight: bold;
     color: #1d3557; 
     direction: ltr; 
@@ -119,39 +116,57 @@ header p {
 }
 
 .speed-value small {
-    font-size: 0.55em; /* کمی کوچک‌تر */
+    font-size: 0.5em; /* کمی کوچک‌تر */
     color: #a8dadc; 
 }
 
 @keyframes pulse {
     0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(1.03); opacity: 0.9; }
+    100% { transform: scale(1.02); opacity: 0.9; } /* نبض کمی ملایم‌تر */
 }
 
+/* رنگ‌بندی کادرهای سرعت */
+#downloadBox { background-color: #28a745; color: white; } /* سبز پررنگ */
+#downloadBox p { color: white; }
+#downloadBox .speed-value { color: white; }
+#downloadBox .speed-value small { color: #d4edda; }
+
+#uploadBox { background-color: #ffffff; color: #333; } /* سفید */
+#uploadBox p { color: #457b9d; }
+#uploadBox .speed-value { color: #1d3557; }
+#uploadBox .speed-value small { color: #a8dadc; }
+
+
+#pingBox { background-color: #e63946; color: white; } /* قرمز */
+#pingBox p { color: white; }
+#pingBox .speed-value { color: white; }
+#pingBox .speed-value small { color: #f8d7da; }
+
+
 button {
-    background-color: #e63946; 
+    background-color: #28a745; /* دکمه شروع سبز شد تا با دانلود هم‌رنگ باشد */
     color: white;
     border: none;
-    padding: 15px 30px; /* کاهش پدینگ */
-    font-size: 1.1em; /* کاهش اندازه فونت */
-    border-radius: 10px; 
+    padding: 12px 25px; /* کاهش پدینگ */
+    font-size: 1em; /* کاهش اندازه فونت */
+    border-radius: 8px; 
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    margin-top: 20px; /* کاهش مارجین */
+    margin-top: 15px; /* کاهش مارجین */
     font-weight: bold;
     letter-spacing: 0.5px; 
-    box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4); 
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4); 
 }
 
 button:hover {
-    background-color: #d62c3e;
-    transform: translateY(-3px); 
-    box-shadow: 0 8px 20px rgba(230, 57, 70, 0.5);
+    background-color: #218838;
+    transform: translateY(-2px); 
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.5);
 }
 
 button:active {
     transform: translateY(0);
-    box-shadow: 0 2px 5px rgba(230, 57, 70, 0.2);
+    box-shadow: 0 2px 5px rgba(40, 167, 69, 0.2);
 }
 
 button:disabled {
@@ -161,12 +176,20 @@ button:disabled {
     transform: none;
 }
 
+.loading-spinner {
+    border: 5px solid #f3f3f3; /* کمی باریک‌تر */
+    border-top: 5px solid #3498db; 
+    width: 30px; /* کوچک‌تر */
+    height: 30px; /* کوچک‌تر */
+    margin: 10px auto 5px; /* کاهش مارجین */
+}
+
 .status-message {
-    margin-top: 20px; /* کاهش مارجین */
-    font-size: 1em; /* کمی کاهش */
+    margin-top: 15px; /* کاهش مارجین */
+    font-size: 0.9em; 
     color: #457b9d;
     font-weight: bold;
-    min-height: 20px; 
+    min-height: 18px; 
     opacity: 0; 
     transition: opacity 0.5s ease-in-out; 
 }
@@ -175,39 +198,26 @@ button:disabled {
     opacity: 1; 
 }
 
-.disclaimer {
-    margin-top: 25px; /* کاهش مارجین */
-    font-size: 0.8em; /* کاهش اندازه فونت */
-    color: #777;
-    padding: 15px; /* کاهش پدینگ */
-    background-color: #f1f7fc; 
-    border-left: 6px solid #457b9d; 
-    border-radius: 8px;
-    text-align: right;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-footer {
-    margin-top: 30px; /* کاهش مارجین */
-    border-top: 1px solid #e0e0e0;
-    padding-top: 15px; /* کاهش پدینگ */
-    font-size: 0.85em; /* کاهش اندازه فونت */
+/* استایل اطلاعات طراح و اینستاگرام */
+.developer-info {
+    margin-top: 20px; /* فاصله از دکمه */
+    font-size: 0.85em; /* کاهش فونت */
     color: #888;
     text-align: center;
 }
 
-.designer-name {
+.developer-info .designer-name {
     font-weight: bold;
     color: #1d3557;
 }
 
-.instagram-link {
-    margin-top: 8px; /* کاهش مارجین */
-    font-size: 0.9em; /* کمی کاهش */
+.developer-info .instagram-link {
+    margin-top: 5px; /* فاصله کمتر */
+    font-size: 0.9em; /* کمی کوچک‌تر */
     color: #666;
 }
 
-.instagram-link a {
+.developer-info .instagram-link a {
     color: #e4405f; 
     text-decoration: none; 
     font-weight: bold;
@@ -215,112 +225,139 @@ footer {
     display: inline-block; 
 }
 
-.instagram-link a:hover {
+.developer-info .instagram-link a:hover {
     color: #c32aa3; 
     text-decoration: underline; 
     transform: scale(1.05); 
 }
 
-.loading-spinner {
-    border: 6px solid #f3f3f3; 
-    border-top: 6px solid #3498db; 
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite; 
-    margin: 15px auto 10px; /* کاهش مارجین */
-    opacity: 0; 
-    transition: opacity 0.5s ease-in-out;
+.disclaimer {
+    margin-top: 20px; /* کاهش مارجین */
+    font-size: 0.75em; /* کاهش اندازه فونت */
+    color: #777;
+    padding: 10px; /* کاهش پدینگ */
+    background-color: #f1f7fc; 
+    border-left: 5px solid #457b9d; /* کمی باریک‌تر */
+    border-radius: 8px;
+    text-align: right;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* سایه ملایم‌تر */
 }
 
-.loading-spinner.visible {
-    opacity: 1; 
+footer {
+    /* اگر فوتر خالی باشد، نیازی به استایل ندارد یا می‌توانید display: none; کنید */
+    display: none; /* فوتر را پنهان کردیم */
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes countUp {
-    from { transform: translateY(10px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-.speed-value.animated {
-    animation: countUp 0.5s ease-out forwards;
-}
-
-/* --- Media Queries for Responsiveness (تنظیمات فشرده‌تر برای موبایل) --- */
+/* --- Media Queries for extreme compactness (فشرده‌سازی بسیار بیشتر برای موبایل) --- */
 
 @media (max-width: 768px) {
     .top-slogan {
-        font-size: 1.5em; /* کاهش فونت شعار */
-        margin-bottom: 15px; /* کاهش فاصله */
+        font-size: 1.4em; 
+        margin-bottom: 10px; 
     }
 
     .container {
-        padding: 20px 20px; /* پدینگ بسیار کمتر برای موبایل */
-        border-radius: 10px; /* گوشه‌های کمتر گرد */
+        padding: 18px 18px; /* پدینگ بسیار بسیار کم */
+        border-radius: 10px; 
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* سایه کمی کمتر */
     }
 
     header h1 {
-        font-size: 1.8em; /* کاهش اندازه فونت عنوان */
+        font-size: 1.6em; /* باز هم کوچک‌تر */
     }
 
     header p {
-        font-size: 0.9em; /* کاهش اندازه فونت توضیحات */
-        margin-bottom: 20px;
-    }
-
-    .speed-test-section {
-        flex-direction: column; 
-        gap: 10px; /* کاهش بیشتر فاصله */
+        font-size: 0.85em; 
         margin-bottom: 15px;
     }
 
+    .speed-test-section {
+        gap: 8px; /* فاصله خیلی کم */
+        margin-bottom: 10px;
+    }
+
     .speed-display {
-        min-width: unset; 
-        width: 100%; 
-        padding: 15px; /* کاهش پدینگ */
+        padding: 12px; /* پدینگ خیلی کم */
     }
 
     .speed-display p {
-        font-size: 0.9em; 
+        font-size: 0.8em; /* کوچک‌ترین فونت */
     }
 
     .speed-value {
-        font-size: 1.8em; /* کاهش اندازه فونت مقادیر سرعت */
+        font-size: 1.6em; /* کوچک‌ترین فونت برای سرعت */
     }
 
     .speed-value small {
-        font-size: 0.5em;
+        font-size: 0.45em;
     }
 
     button {
-        padding: 10px 20px; /* پدینگ و فونت دکمه را باز هم کمتر کردیم */
-        font-size: 1em; 
-        margin-top: 15px;
+        padding: 8px 15px; /* دکمه بسیار کوچک‌تر */
+        font-size: 0.9em; 
+        margin-top: 10px;
+    }
+
+    .loading-spinner {
+        width: 25px; /* کوچک‌تر */
+        height: 25px;
+        border-width: 4px;
+        margin: 8px auto 4px;
     }
 
     .status-message {
-        font-size: 0.9em; 
-        margin-top: 15px;
+        font-size: 0.85em; 
+        margin-top: 10px;
+        min-height: 16px;
+    }
+
+    .developer-info {
+        margin-top: 15px; /* کاهش فاصله */
+        font-size: 0.75em; /* کوچک‌ترین فونت */
+    }
+
+    .developer-info .instagram-link {
+        font-size: 0.8em;
     }
 
     .disclaimer {
-        font-size: 0.75em; 
+        font-size: 0.7em; /* کوچک‌ترین فونت */
+        padding: 8px;
+        margin-top: 15px;
+    }
+}
+
+/* برای دستگاه‌های بسیار کوچک (مثل آیفون SE یا مرورگرهای دارای نوار آدرس بزرگ) */
+@media (max-width: 400px) {
+    .top-slogan {
+        font-size: 1.2em;
+        margin-bottom: 8px;
+    }
+    .container {
+        padding: 15px 15px;
+    }
+    header h1 {
+        font-size: 1.4em;
+    }
+    header p {
+        font-size: 0.8em;
+        margin-bottom: 10px;
+    }
+    .speed-display {
         padding: 10px;
-        margin-top: 20px;
     }
-
-    footer {
-        padding-top: 10px;
-        font-size: 0.8em; 
-        margin-top: 20px;
+    .speed-value {
+        font-size: 1.4em;
     }
-
-    .instagram-link {
+    button {
+        padding: 6px 12px;
         font-size: 0.85em;
     }
-        }
+    .developer-info {
+        margin-top: 10px;
+    }
+    .disclaimer {
+        margin-top: 10px;
+        padding: 6px;
+    }
+                                 }
