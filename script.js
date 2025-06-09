@@ -6,15 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusMessage = document.getElementById('statusMessage');
     const loadingSpinner = document.getElementById('loadingSpinner'); 
 
+    // URL های تست دانلود با حجم‌های مختلف
+    // تعداد بیشتری برای تخمین دقیق‌تر
     const downloadTestUrls = [
-        'https://speed.cloudflare.com/__down?bytes=500000', 
-        'https://speed.cloudflare.com/__down?bytes=1000000', 
-        'https://speed.cloudflare.com/__down?bytes=2000000', 
-        'https://speed.cloudflare.com/__down?bytes=5000000'  
+        'https://speed.cloudflare.com/__down?bytes=500000', // 0.5 MB
+        'https://speed.cloudflare.com/__down?bytes=1000000', // 1 MB
+        'https://speed.cloudflare.com/__down?bytes=1500000', // 1.5 MB (جدید)
+        'https://speed.cloudflare.com/__down?bytes=2000000', // 2 MB
+        'https://speed.cloudflare.com/__down?bytes=3000000', // 3 MB (جدید)
+        'https://speed.cloudflare.com/__down?bytes=5000000'  // 5 MB
     ];
 
     const uploadTestUrl = 'https://httpbin.org/post'; 
-    const uploadTestSize = 1 * 1024 * 1024; 
+    const uploadTestSize = 1 * 1024 * 1024; // 1 MB داده برای هر تست آپلود
 
     startButton.addEventListener('click', startSpeedTest);
 
@@ -36,20 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
         void pingTimeSpan.offsetWidth;
 
         try {
+            // --- ۱. تست پینگ (تعداد دفعات بیشتر: ۸ بار) ---
             statusMessage.textContent = 'در حال تست پینگ...';
             statusMessage.classList.add('visible'); 
             const pingResults = [];
-            for (let i = 0; i < 4; i++) { 
+            for (let i = 0; i < 8; i++) { // ۸ بار تست پینگ
                 const startTime = performance.now();
                 await fetch('https://www.google.com/favicon.ico', { mode: 'no-cors', cache: 'no-store' }); 
                 const endTime = performance.now();
                 pingResults.push(endTime - startTime);
-                await new Promise(resolve => setTimeout(resolve, 100)); 
+                await new Promise(resolve => setTimeout(resolve, 80)); // تأخیر کمی کمتر
             }
             const avgPing = Math.round(pingResults.reduce((a, b) => a + b) / pingResults.length);
             pingTimeSpan.innerHTML = `${avgPing} <small>ms</small>`;
             pingTimeSpan.classList.add('animated'); 
 
+            // --- ۲. تست دانلود (تعداد فایل‌های بیشتر) ---
             statusMessage.textContent = 'در حال تست دانلود...';
             const downloadSpeeds = [];
             for (const url of downloadTestUrls) {
@@ -66,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 downloadSpeedSpan.innerHTML = `${mbps} <small>Mbps</small>`;
                 downloadSpeedSpan.classList.add('animated'); 
-                await new Promise(resolve => setTimeout(resolve, 100)); 
+                await new Promise(resolve => setTimeout(resolve, 80)); 
             }
             const finalDownloadMbps = (downloadSpeeds.reduce((a, b) => a + b) / downloadSpeeds.length).toFixed(2);
             downloadSpeedSpan.innerHTML = `${finalDownloadMbps} <small>Mbps</small>`;
@@ -74,10 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
             downloadSpeedSpan.classList.remove('animated'); 
             downloadSpeedSpan.style.animation = 'pulse 1s infinite alternate'; 
 
+            // --- ۳. تست آپلود (تعداد دفعات بیشتر: ۴ بار) ---
             statusMessage.textContent = 'در حال تست آپلود...';
             const uploadSpeeds = [];
             const dummyUploadData = new Blob([new ArrayBuffer(uploadTestSize)], { type: 'application/octet-stream' });
-            for (let i = 0; i < 2; i++) { 
+            for (let i = 0; i < 4; i++) { // ۴ بار تست آپلود
                 const startTime = performance.now();
                 await fetch(uploadTestUrl, {
                     method: 'POST',
@@ -95,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 uploadSpeedSpan.innerHTML = `${mbps} <small>Mbps</small>`;
                 uploadSpeedSpan.classList.add('animated'); 
-                await new Promise(resolve => setTimeout(resolve, 100)); 
+                await new Promise(resolve => setTimeout(resolve, 80)); 
             }
             const finalUploadMbps = (uploadSpeeds.reduce((a, b) => a + b) / uploadSpeeds.length).toFixed(2);
             uploadSpeedSpan.innerHTML = `${finalUploadMbps} <small>Mbps</small>`;
