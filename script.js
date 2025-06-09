@@ -6,17 +6,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusMessage = document.getElementById('statusMessage');
     const loadingSpinner = document.getElementById('loadingSpinner'); 
 
-    // URL های تست دانلود با حجم‌های مختلف
-    // تعداد بیشتری برای تخمین دقیق‌تر
+    // URL های تست دانلود با حجم‌های متنوع اما تعداد کمتر برای سرعت
     const downloadTestUrls = [
-        'https://speed.cloudflare.com/__down?bytes=500000', // 0.5 MB
-        'https://speed.cloudflare.com/__down?bytes=1000000', // 1 MB
-        'https://speed.cloudflare.com/__down?bytes=1500000', // 1.5 MB (جدید)
+        'https://speed.cloudflare.com/__down?bytes=500000',  // 0.5 MB
         'https://speed.cloudflare.com/__down?bytes=2000000', // 2 MB
-        'https://speed.cloudflare.com/__down?bytes=3000000', // 3 MB (جدید)
-        'https://speed.cloudflare.com/__down?bytes=5000000'  // 5 MB
+        'https://speed.cloudflare.com/__down?bytes=5000000'   // 5 MB
     ];
 
+    // URL برای تست آپلود - از یک نقطه پایانی عمومی استفاده شده است.
+    // **نکته مهم:** این نقطه پایانی (httpbin.org) برای تست سرعت واقعی طراحی نشده و ممکن است محدودیت‌هایی داشته باشد.
+    // خطاهای آپلود معمولاً به این دلیل است.
     const uploadTestUrl = 'https://httpbin.org/post'; 
     const uploadTestSize = 1 * 1024 * 1024; // 1 MB داده برای هر تست آپلود
 
@@ -29,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingSpinner.classList.remove('hidden'); 
         loadingSpinner.classList.add('visible');
 
+        // ریست کردن نتایج و انیمیشن‌ها
         downloadSpeedSpan.innerHTML = '۰.۰۰ <small>Mbps</small>';
         uploadSpeedSpan.innerHTML = '۰.۰۰ <small>Mbps</small>';
         pingTimeSpan.innerHTML = '۰ <small>ms</small>';
@@ -40,22 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
         void pingTimeSpan.offsetWidth;
 
         try {
-            // --- ۱. تست پینگ (تعداد دفعات بیشتر: ۸ بار) ---
+            // --- ۱. تست پینگ (۵ بار برای پایداری) ---
             statusMessage.textContent = 'در حال تست پینگ...';
             statusMessage.classList.add('visible'); 
             const pingResults = [];
-            for (let i = 0; i < 8; i++) { // ۸ بار تست پینگ
+            for (let i = 0; i < 5; i++) { // ۵ بار تست پینگ
                 const startTime = performance.now();
                 await fetch('https://www.google.com/favicon.ico', { mode: 'no-cors', cache: 'no-store' }); 
                 const endTime = performance.now();
                 pingResults.push(endTime - startTime);
-                await new Promise(resolve => setTimeout(resolve, 80)); // تأخیر کمی کمتر
+                await new Promise(resolve => setTimeout(resolve, 50)); // تأخیر کوتاه
             }
             const avgPing = Math.round(pingResults.reduce((a, b) => a + b) / pingResults.length);
             pingTimeSpan.innerHTML = `${avgPing} <small>ms</small>`;
             pingTimeSpan.classList.add('animated'); 
 
-            // --- ۲. تست دانلود (تعداد فایل‌های بیشتر) ---
+            // --- ۲. تست دانلود (تعداد فایل‌های کمتر اما با تنوع حجم) ---
             statusMessage.textContent = 'در حال تست دانلود...';
             const downloadSpeeds = [];
             for (const url of downloadTestUrls) {
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 downloadSpeedSpan.innerHTML = `${mbps} <small>Mbps</small>`;
                 downloadSpeedSpan.classList.add('animated'); 
-                await new Promise(resolve => setTimeout(resolve, 80)); 
+                await new Promise(resolve => setTimeout(resolve, 50)); 
             }
             const finalDownloadMbps = (downloadSpeeds.reduce((a, b) => a + b) / downloadSpeeds.length).toFixed(2);
             downloadSpeedSpan.innerHTML = `${finalDownloadMbps} <small>Mbps</small>`;
@@ -80,11 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
             downloadSpeedSpan.classList.remove('animated'); 
             downloadSpeedSpan.style.animation = 'pulse 1s infinite alternate'; 
 
-            // --- ۳. تست آپلود (تعداد دفعات بیشتر: ۴ بار) ---
+            // --- ۳. تست آپلود (فقط ۲ بار برای کاهش احتمال خطا) ---
             statusMessage.textContent = 'در حال تست آپلود...';
             const uploadSpeeds = [];
             const dummyUploadData = new Blob([new ArrayBuffer(uploadTestSize)], { type: 'application/octet-stream' });
-            for (let i = 0; i < 4; i++) { // ۴ بار تست آپلود
+            for (let i = 0; i < 2; i++) { // ۲ بار تست آپلود
                 const startTime = performance.now();
                 await fetch(uploadTestUrl, {
                     method: 'POST',
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 uploadSpeedSpan.innerHTML = `${mbps} <small>Mbps</small>`;
                 uploadSpeedSpan.classList.add('animated'); 
-                await new Promise(resolve => setTimeout(resolve, 80)); 
+                await new Promise(resolve => setTimeout(resolve, 50)); 
             }
             const finalUploadMbps = (uploadSpeeds.reduce((a, b) => a + b) / uploadSpeeds.length).toFixed(2);
             uploadSpeedSpan.innerHTML = `${finalUploadMbps} <small>Mbps</small>`;
@@ -114,8 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
             statusMessage.classList.add('visible'); 
 
         } catch (error) {
-            console.error('خطا در طول تست سرعت:', error);
-            statusMessage.textContent = 'خطا در تست. لطفا دوباره تلاش کنید.';
+            // نمایش خطای واضح‌تر در کنسول و صفحه
+            console.error('Error during speed test:', error);
+            statusMessage.textContent = `خطا در تست: ${error.message || 'مشکل ناشناخته'}`; // نمایش پیام خطا اگر وجود دارد
             statusMessage.classList.add('visible'); 
             downloadSpeedSpan.innerHTML = 'خطا <small>Mbps</small>';
             uploadSpeedSpan.innerHTML = 'خطا <small>Mbps</small>';
