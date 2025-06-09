@@ -10,20 +10,22 @@ body {
     direction: rtl; 
     text-align: right; 
     color: #333;
-    line-height: 1.6;
+    line-height: 1.5; /* کاهش خط‌فاصله */
     overflow-x: hidden; 
-    padding: 5px; /* پدینگ کلی را باز هم کاهش دادیم */
+    padding: 0px; /* پدینگ کلی را به 0 رساندیم */
     box-sizing: border-box;
 }
 
 .top-slogan {
     color: white;
-    font-size: 1.6em; /* کمی کوچک‌تر */
+    font-size: 1.4em; /* باز هم کوچک‌تر */
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
-    margin-bottom: 15px; /* کاهش فاصله */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* سایه متن کمتر */
+    margin-bottom: 10px; /* کاهش فاصله از کانتینر اصلی */
+    margin-top: 10px; /* کمی مارجین از بالا */
     text-align: center;
     width: 100%;
+    flex-shrink: 0; /* جلوگیری از کوچک شدن شعار */
 }
 
 @keyframes fadeIn {
@@ -33,11 +35,11 @@ body {
 
 .container {
     background-color: #ffffff;
-    padding: 25px 30px; /* کاهش پدینگ */
-    border-radius: 15px; /* کمی کمتر گرد */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); 
-    max-width: 550px; /* کمی کاهش عرض */
-    width: 100%; 
+    padding: 20px 20px; /* کاهش پدینگ */
+    border-radius: 15px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* سایه کمی کمتر */
+    max-width: 500px; /* کاهش عرض */
+    width: 95%; /* پر کردن عرض بیشتر در موبایل */
     text-align: center;
     box-sizing: border-box; 
     animation: fadeIn 0.8s ease-out forwards; 
@@ -46,8 +48,8 @@ body {
 
 header h1 {
     color: #1d3557; 
-    font-size: 2em; /* کاهش اندازه فونت */
-    margin-bottom: 5px; /* کاهش مارجین */
+    font-size: 1.8em; /* کاهش اندازه فونت */
+    margin-bottom: 5px; 
     position: relative; 
     display: inline-block; 
 }
@@ -56,11 +58,11 @@ header h1::after {
     content: '';
     display: block;
     width: 0;
-    height: 3px; 
+    height: 2px; /* باریک‌تر */
     background: #e63946; 
     transition: width 0.5s ease-out; 
-    margin: 3px auto 0; /* کاهش مارجین */
-    border-radius: 2px;
+    margin: 2px auto 0; /* کاهش مارجین */
+    border-radius: 1px;
 }
 
 .container:hover header h1::after {
@@ -72,66 +74,70 @@ header .highlight {
 }
 
 header p {
-    font-size: 0.9em; /* کاهش اندازه فونت */
+    font-size: 0.85em; /* کاهش اندازه فونت */
     color: #666;
-    margin-bottom: 20px; /* کاهش مارجین */
+    margin-bottom: 15px; /* کاهش مارجین */
+    line-height: 1.4; /* کاهش خط‌فاصله */
 }
 
 .speed-test-section {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap; 
-    gap: 10px; /* کاهش بیشتر فاصله */
-    margin-bottom: 15px; /* کاهش مارجین */
+    flex-direction: column; /* این باعث می‌شود کادرها زیر هم قرار بگیرند */
+    justify-content: center; /* مرکز چینش عمودی در صورت نیاز */
+    align-items: center; /* مرکز چینش افقی */
+    gap: 8px; /* کاهش بیشتر فاصله */
+    margin-bottom: 10px; /* کاهش مارجین */
+    width: 100%; /* مطمئن می‌شویم عرض کامل را بگیرد */
 }
 
 .speed-display {
-    padding: 15px; /* کاهش پدینگ */
-    border-radius: 10px; /* کمی کمتر گرد */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* سایه کمی ملایم‌تر */
-    flex: 1; 
-    min-width: 120px; /* کاهش حداقل عرض */
+    padding: 10px; /* کاهش پدینگ */
+    border-radius: 8px; /* کمی کمتر گرد */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* سایه ملایم‌تر */
+    width: 90%; /* کادرها عرض خود را بگیرند */
+    max-width: 300px; /* برای اینکه در دسکتاپ هم خیلی عریض نشوند */
     text-align: center;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .speed-display:hover {
-    transform: translateY(-3px); /* افکت بالا رفتن کمی کمتر */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px); /* افکت بالا رفتن کمی کمتر */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 .speed-display p {
-    margin: 0 0 5px 0; /* کاهش مارجین */
-    font-size: 0.9em; /* کاهش اندازه فونت */
-    color: #457b9d; 
+    margin: 0 0 5px 0; 
+    font-size: 0.85em; /* کاهش اندازه فونت */
     font-weight: bold;
 }
 
 .speed-value {
-    font-size: 2em; /* کاهش اندازه فونت */
+    font-size: 1.8em; /* کاهش اندازه فونت */
     font-weight: bold;
-    color: #1d3557; 
     direction: ltr; 
     animation: pulse 1s infinite alternate; 
 }
 
 .speed-value small {
-    font-size: 0.5em; /* کمی کوچک‌تر */
-    color: #a8dadc; 
+    font-size: 0.45em; 
 }
 
 @keyframes pulse {
     0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(1.02); opacity: 0.9; } /* نبض کمی ملایم‌تر */
+    100% { transform: scale(1.01); opacity: 0.9; } /* نبض خیلی ملایم‌تر */
 }
 
 /* رنگ‌بندی کادرهای سرعت */
 #downloadBox { background-color: #28a745; color: white; } /* سبز پررنگ */
 #downloadBox p { color: white; }
 #downloadBox .speed-value { color: white; }
-#downloadBox .speed-value small { color: #d4edda; }
+#downloadBox .speed-value small { color: rgba(255,255,255,0.7); }
 
-#uploadBox { background-color: #ffffff; color: #333; } /* سفید */
+#uploadBox { 
+    background-color: #f8f8f8; /* سفید با کمی تفاوت */
+    color: #333; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* سایه ظریف برای تمایز */
+}
 #uploadBox p { color: #457b9d; }
 #uploadBox .speed-value { color: #1d3557; }
 #uploadBox .speed-value small { color: #a8dadc; }
@@ -140,33 +146,33 @@ header p {
 #pingBox { background-color: #e63946; color: white; } /* قرمز */
 #pingBox p { color: white; }
 #pingBox .speed-value { color: white; }
-#pingBox .speed-value small { color: #f8d7da; }
+#pingBox .speed-value small { color: rgba(255,255,255,0.7); }
 
 
 button {
-    background-color: #28a745; /* دکمه شروع سبز شد تا با دانلود هم‌رنگ باشد */
+    background-color: #28a745; 
     color: white;
     border: none;
-    padding: 12px 25px; /* کاهش پدینگ */
-    font-size: 1em; /* کاهش اندازه فونت */
+    padding: 10px 20px; /* کاهش پدینگ */
+    font-size: 0.95em; /* کاهش اندازه فونت */
     border-radius: 8px; 
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    margin-top: 15px; /* کاهش مارجین */
+    margin-top: 10px; /* کاهش مارجین */
     font-weight: bold;
-    letter-spacing: 0.5px; 
-    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4); 
+    letter-spacing: 0.2px; /* کمی کمتر */
+    box-shadow: 0 3px 10px rgba(40, 167, 69, 0.4); 
 }
 
 button:hover {
     background-color: #218838;
-    transform: translateY(-2px); 
-    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.5);
+    transform: translateY(-1px); 
+    box-shadow: 0 5px 12px rgba(40, 167, 69, 0.5);
 }
 
 button:active {
     transform: translateY(0);
-    box-shadow: 0 2px 5px rgba(40, 167, 69, 0.2);
+    box-shadow: 0 1px 3px rgba(40, 167, 69, 0.2);
 }
 
 button:disabled {
@@ -177,19 +183,17 @@ button:disabled {
 }
 
 .loading-spinner {
-    border: 5px solid #f3f3f3; /* کمی باریک‌تر */
-    border-top: 5px solid #3498db; 
-    width: 30px; /* کوچک‌تر */
-    height: 30px; /* کوچک‌تر */
-    margin: 10px auto 5px; /* کاهش مارجین */
+    border: 4px solid #f3f3f3; 
+    border-top: 4px solid #3498db; 
+    width: 25px; /* کوچک‌تر */
+    height: 25px; 
+    margin: 8px auto 4px; 
 }
 
 .status-message {
-    margin-top: 15px; /* کاهش مارجین */
-    font-size: 0.9em; 
-    color: #457b9d;
-    font-weight: bold;
-    min-height: 18px; 
+    margin-top: 10px; 
+    font-size: 0.85em; 
+    min-height: 16px; 
     opacity: 0; 
     transition: opacity 0.5s ease-in-out; 
 }
@@ -198,12 +202,12 @@ button:disabled {
     opacity: 1; 
 }
 
-/* استایل اطلاعات طراح و اینستاگرام */
 .developer-info {
-    margin-top: 20px; /* فاصله از دکمه */
-    font-size: 0.85em; /* کاهش فونت */
+    margin-top: 15px; /* فاصله از دکمه */
+    font-size: 0.8em; /* کوچک‌تر */
     color: #888;
     text-align: center;
+    line-height: 1.3; /* خط‌فاصله کمتر */
 }
 
 .developer-info .designer-name {
@@ -212,8 +216,8 @@ button:disabled {
 }
 
 .developer-info .instagram-link {
-    margin-top: 5px; /* فاصله کمتر */
-    font-size: 0.9em; /* کمی کوچک‌تر */
+    margin-top: 3px; /* فاصله خیلی کم */
+    font-size: 0.85em; 
     color: #666;
 }
 
@@ -228,136 +232,121 @@ button:disabled {
 .developer-info .instagram-link a:hover {
     color: #c32aa3; 
     text-decoration: underline; 
-    transform: scale(1.05); 
+    transform: scale(1.03); 
 }
 
 .disclaimer {
-    margin-top: 20px; /* کاهش مارجین */
-    font-size: 0.75em; /* کاهش اندازه فونت */
+    margin-top: 15px; /* کاهش مارجین */
+    font-size: 0.7em; 
     color: #777;
-    padding: 10px; /* کاهش پدینگ */
+    padding: 8px; /* کاهش پدینگ */
     background-color: #f1f7fc; 
-    border-left: 5px solid #457b9d; /* کمی باریک‌تر */
-    border-radius: 8px;
+    border-left: 4px solid #457b9d; 
+    border-radius: 6px; /* کمی کمتر گرد */
     text-align: right;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* سایه ملایم‌تر */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.03); /* سایه بسیار ملایم */
 }
 
 footer {
-    /* اگر فوتر خالی باشد، نیازی به استایل ندارد یا می‌توانید display: none; کنید */
-    display: none; /* فوتر را پنهان کردیم */
+    display: none; 
 }
 
-/* --- Media Queries for extreme compactness (فشرده‌سازی بسیار بیشتر برای موبایل) --- */
+/* --- Media Queries for extreme compactness (فشرده‌سازی نهایی برای موبایل) --- */
 
 @media (max-width: 768px) {
     .top-slogan {
-        font-size: 1.4em; 
-        margin-bottom: 10px; 
+        font-size: 1.2em; 
+        margin-bottom: 8px; 
     }
-
     .container {
-        padding: 18px 18px; /* پدینگ بسیار بسیار کم */
+        padding: 15px 15px; /* پدینگ نهایی */
         border-radius: 10px; 
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* سایه کمی کمتر */
     }
-
     header h1 {
-        font-size: 1.6em; /* باز هم کوچک‌تر */
+        font-size: 1.5em; /* کوچک‌تر */
     }
-
     header p {
-        font-size: 0.85em; 
-        margin-bottom: 15px;
+        font-size: 0.8em; 
+        margin-bottom: 12px;
     }
-
     .speed-test-section {
-        gap: 8px; /* فاصله خیلی کم */
-        margin-bottom: 10px;
+        gap: 5px; /* فاصله خیلی کم */
+        margin-bottom: 8px;
     }
-
     .speed-display {
-        padding: 12px; /* پدینگ خیلی کم */
+        padding: 8px; /* پدینگ خیلی کم */
+        width: 95%; /* مطمئن می‌شویم که عرض کامل را پر کند */
+        max-width: unset; /* برای موبایل، محدودیت حداکثر عرض را برمی‌داریم */
     }
-
     .speed-display p {
-        font-size: 0.8em; /* کوچک‌ترین فونت */
+        font-size: 0.75em; 
     }
-
     .speed-value {
-        font-size: 1.6em; /* کوچک‌ترین فونت برای سرعت */
+        font-size: 1.5em; 
     }
-
-    .speed-value small {
-        font-size: 0.45em;
-    }
-
     button {
-        padding: 8px 15px; /* دکمه بسیار کوچک‌تر */
-        font-size: 0.9em; 
-        margin-top: 10px;
-    }
-
-    .loading-spinner {
-        width: 25px; /* کوچک‌تر */
-        height: 25px;
-        border-width: 4px;
-        margin: 8px auto 4px;
-    }
-
-    .status-message {
+        padding: 8px 15px; 
         font-size: 0.85em; 
-        margin-top: 10px;
-        min-height: 16px;
+        margin-top: 8px;
     }
-
+    .loading-spinner {
+        width: 20px; /* کوچک‌ترین اندازه */
+        height: 20px;
+        border-width: 3px;
+        margin: 5px auto 3px;
+    }
+    .status-message {
+        font-size: 0.8em; 
+        margin-top: 8px;
+        min-height: 14px;
+    }
     .developer-info {
-        margin-top: 15px; /* کاهش فاصله */
-        font-size: 0.75em; /* کوچک‌ترین فونت */
+        margin-top: 10px; 
+        font-size: 0.7em; 
     }
-
     .developer-info .instagram-link {
-        font-size: 0.8em;
+        font-size: 0.75em;
     }
-
     .disclaimer {
-        font-size: 0.7em; /* کوچک‌ترین فونت */
-        padding: 8px;
-        margin-top: 15px;
+        font-size: 0.65em; 
+        padding: 6px;
+        margin-top: 10px;
     }
 }
 
-/* برای دستگاه‌های بسیار کوچک (مثل آیفون SE یا مرورگرهای دارای نوار آدرس بزرگ) */
-@media (max-width: 400px) {
+/* برای دستگاه‌های بسیار کوچک (مانند آیفون SE) که نیاز به فشرده‌سازی شدیدتر دارند */
+@media (max-width: 360px) {
     .top-slogan {
-        font-size: 1.2em;
-        margin-bottom: 8px;
+        font-size: 1.1em;
+        margin-bottom: 5px;
     }
     .container {
-        padding: 15px 15px;
+        padding: 10px 10px;
     }
     header h1 {
-        font-size: 1.4em;
+        font-size: 1.3em;
     }
     header p {
-        font-size: 0.8em;
+        font-size: 0.75em;
         margin-bottom: 10px;
     }
     .speed-display {
-        padding: 10px;
-    }
-    .speed-value {
-        font-size: 1.4em;
-    }
-    button {
-        padding: 6px 12px;
-        font-size: 0.85em;
-    }
-    .developer-info {
-        margin-top: 10px;
-    }
-    .disclaimer {
-        margin-top: 10px;
         padding: 6px;
     }
-                                 }
+    .speed-value {
+        font-size: 1.3em;
+    }
+    button {
+        padding: 5px 10px;
+        font-size: 0.8em;
+    }
+    .status-message {
+        font-size: 0.75em;
+    }
+    .developer-info {
+        font-size: 0.65em;
+    }
+    .disclaimer {
+        font-size: 0.6em;
+    }
+}
